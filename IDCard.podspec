@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'IDCard'
-  s.version          = '1.0.0'
+  s.version          = '1.0'
   s.summary          = 'A swift package for verify China ID card number'
 
   s.description      = <<-DESC
