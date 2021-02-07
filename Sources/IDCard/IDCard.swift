@@ -40,10 +40,10 @@ public class IDCard {
     }
 
     public struct Birthday {
-        let year: String
-        let month: String
-        let day: String
-        let date: Date
+        public let year: String
+        public let month: String
+        public let day: String
+        public let date: Date
 
         public init(year: String, month: String, day: String) {
             self.year = year
