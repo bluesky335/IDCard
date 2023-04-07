@@ -27,6 +27,7 @@ dependencies: [
 
 ## 用法
 
+### 校验
 ```swift
 let card = IDCard(number:"11010519491231002X")
 if card.isValid {
@@ -34,6 +35,20 @@ if card.isValid {
 }else{
     print("❌")
 }
+```
+
+### 创建身份证号
+
+```swift
+// 2020-04-07 15:52:52
+let date = Date(timeIntervalSince1970: 1586245972)
+let formater = DateFormatter()
+formater.timeZone = .init(secondsFromGMT: 8 * 60 * 60)
+let cardNumber1 = IDCard.createIDCardNumber(birthday: date, dateFormater: formater)
+
+let cardNumber2 = IDCard.createIDCardNumber(gender: .female)
+
+let cardNumber3 = IDCard.createIDCardNumber(cityCode: "500232")
 ```
 
 ## go语言版本
