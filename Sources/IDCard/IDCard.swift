@@ -68,6 +68,9 @@ public class IDCard {
 
     /// 是否符合国标
     public private(set) lazy var isValid: Bool = checkIDCard()
+    
+    /// 区域代码，身份证前6位
+    public private(set) lazy var cityCode: String = getCityCode()
 
     /// 初始化
     /// - Parameter number: 身份证号码
@@ -184,5 +187,15 @@ public class IDCard {
         let num = Int(numStr) ?? 0
         let gender: Gender = (num % 2 == 0) ? .female : .male
         return gender
+    }
+    
+    /// 获取区域代码
+    /// - Returns: 区域代码,如果身份证不合法，返回的就是空字符串
+    private func getCityCode() -> String {
+        guard isValid else {
+            return ""
+        }
+        let numStr = numbers[..<6]
+        return String(numStr)
     }
 }

@@ -14,6 +14,28 @@ final class IDCardTests: XCTestCase {
         XCTAssertTrue(IDCard(number: number).isValid)
     }
 
+    func testCreateIDCardBirthday() {
+        // 2020-04-07 15:52:52
+        let date = Date(timeIntervalSince1970: 1586245972)
+        let formater = DateFormatter()
+        formater.timeZone = .init(secondsFromGMT: 8 * 60 * 60)
+        let number2 = IDCard.createIDCardNumber(birthday: date, dateFormater: formater)
+        let birthday = IDCard(number: number2).birthday
+        XCTAssertEqual(IDCard.Birthday(year: "2020", month: "04", day: "07"), birthday)
+    }
+
+    func testCreateIDCardGender() {
+        let number1 = IDCard.createIDCardNumber(gender: .female)
+        XCTAssertEqual(IDCard(number: number1).gender, .female)
+        let number2 = IDCard.createIDCardNumber(gender: .male)
+        XCTAssertEqual(IDCard(number: number2).gender, .male)
+    }
+
+    func testCreateIDCardCityCode() {
+        let number1 = IDCard.createIDCardNumber(cityCode: "500232")
+        XCTAssertEqual(IDCard(number: number1).cityCode, "500232")
+    }
+
     func testCard(cardnumber: String, birthDay: IDCard.Birthday, gender: IDCard.Gender) {
         let card = IDCard(number: cardnumber)
         XCTAssertTrue(card.isValid)
