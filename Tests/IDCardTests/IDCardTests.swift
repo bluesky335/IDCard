@@ -36,6 +36,15 @@ final class IDCardTests: XCTestCase {
         XCTAssertEqual(IDCard(number: number1).cityCode, "500232")
     }
 
+    func testWrongString() {
+        XCTAssertFalse(IDCard(number: "").isValid)
+        XCTAssertFalse(IDCard(number: "  ").isValid)
+        XCTAssertFalse(IDCard(number: "😐  🤔️").isValid)
+        XCTAssertFalse(IDCard(number: "12").isValid)
+        XCTAssertFalse(IDCard(number: "12312312312312312344123123123").isValid)
+        XCTAssertFalse(IDCard(number: "lksdjflak离开家阿斯顿发空间阿斯顿发。 是对方。是对方").isValid)
+    }
+
     func testCard(cardnumber: String, birthDay: IDCard.Birthday, gender: IDCard.Gender) {
         let card = IDCard(number: cardnumber)
         XCTAssertTrue(card.isValid)

@@ -169,8 +169,11 @@ public class IDCard {
     // 计算规则参考“中国国家标准化管理委员会”官方文档：http://www.gb688.cn/bzgk/gb/newGbInfo?hcno=080D6FBF2BB468F9007657F26D60013E
     /// - Returns: 是否符合国标要求
     private func checkIDCard() -> Bool {
+        guard let a1Str = Self.getSignChar(for: numbers) else {
+            // 不符合身份证规则
+            return false
+        }
         let signChar = String(numbers[numbers.index(numbers.startIndex, offsetBy: 17)])
-        let a1Str = Self.getSignChar(for: numbers)
         guard a1Str == signChar else {
             return false
         }
